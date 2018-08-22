@@ -80,8 +80,19 @@
 /* Define if declare atexit data as global.  */
 #define _REENT_GLOBAL_ATEXIT 1
 
+/* Define to move the stdio stream FILE objects out of struct _reent and make
+   them global.  The stdio stream pointers of struct _reent are initialized to
+   point to the global stdio FILE stream objects. */
+/* #undef _WANT_REENT_GLOBAL_STDIO_STREAMS */
+
 /* Define if small footprint nano-formatted-IO implementation used.  */
 #define _NANO_FORMATTED_IO 1
+
+/* Define if using retargetable functions for default lock routines.  */
+/* #undef _RETARGETABLE_LOCKING */
+
+/* Define to use type long for time_t.  */
+/* #undef _WANT_USE_LONG_TIME_T */
 
 /*
  * Iconv encodings enabled ("to" direction)

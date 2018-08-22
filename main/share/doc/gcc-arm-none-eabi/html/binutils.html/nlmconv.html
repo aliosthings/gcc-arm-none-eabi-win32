@@ -1,112 +1,166 @@
-<html lang="en">
-<head>
-<title>nlmconv - GNU Binary Utilities</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Binary Utilities">
-<meta name="generator" content="makeinfo 4.11">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="addr2line.html#addr2line" title="addr2line">
-<link rel="next" href="windmc.html#windmc" title="windmc">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-Copyright (C) 1991-2015 Free Software Foundation, Inc.
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright (C) 1991-2018 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3
 or any later version published by the Free Software Foundation;
 with no Invariant Sections, with no Front-Cover Texts, and with no
 Back-Cover Texts.  A copy of the license is included in the
-section entitled ``GNU Free Documentation License''.
+section entitled "GNU Free Documentation License".
+ -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>GNU Binary Utilities: nlmconv</title>
 
+<meta name="description" content="GNU Binary Utilities: nlmconv">
+<meta name="keywords" content="GNU Binary Utilities: nlmconv">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Binutils-Index.html#Binutils-Index" rel="index" title="Binutils Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="windmc.html#windmc" rel="next" title="windmc">
+<link href="addr2line.html#addr2line" rel="prev" title="addr2line">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
-</head>
-<body>
-<div class="node">
-<p>
-<a name="nlmconv"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="windmc.html#windmc">windmc</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="addr2line.html#addr2line">addr2line</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
-</div>
+</style>
 
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="nlmconv"></a>
+<div class="header">
+<p>
+Next: <a href="windmc.html#windmc" accesskey="n" rel="next">windmc</a>, Previous: <a href="addr2line.html#addr2line" accesskey="p" rel="prev">addr2line</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Binutils-Index.html#Binutils-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="nlmconv-1"></a>
 <h2 class="chapter">11 nlmconv</h2>
 
-<p><samp><span class="command">nlmconv</span></samp> converts a relocatable object file into a NetWare
+<p><code>nlmconv</code> converts a relocatable object file into a NetWare
 Loadable Module.
+</p>
 
-   <blockquote>
-<em>Warning:</em> <samp><span class="command">nlmconv</span></samp> is not always built as part of the binary
-utilities, since it is only useful for NLM targets. 
-</blockquote>
+<blockquote>
+<p><em>Warning:</em> <code>nlmconv</code> is not always built as part of the binary
+utilities, since it is only useful for NLM targets.
+</p></blockquote>
 
-<!-- man title nlmconv converts object code into an NLM. -->
-<pre class="smallexample">     <!-- man begin SYNOPSIS nlmconv -->
-     nlmconv [<samp><span class="option">-I</span></samp> <var>bfdname</var>|<samp><span class="option">--input-target=</span></samp><var>bfdname</var>]
-             [<samp><span class="option">-O</span></samp> <var>bfdname</var>|<samp><span class="option">--output-target=</span></samp><var>bfdname</var>]
-             [<samp><span class="option">-T</span></samp> <var>headerfile</var>|<samp><span class="option">--header-file=</span></samp><var>headerfile</var>]
-             [<samp><span class="option">-d</span></samp>|<samp><span class="option">--debug</span></samp>] [<samp><span class="option">-l</span></samp> <var>linker</var>|<samp><span class="option">--linker=</span></samp><var>linker</var>]
-             [<samp><span class="option">-h</span></samp>|<samp><span class="option">--help</span></samp>] [<samp><span class="option">-V</span></samp>|<samp><span class="option">--version</span></samp>]
-             <var>infile</var> <var>outfile</var>
-     <!-- man end -->
-</pre>
-   <!-- man begin DESCRIPTION nlmconv -->
-   <p><samp><span class="command">nlmconv</span></samp> converts the relocatable &lsquo;<samp><span class="samp">i386</span></samp>&rsquo; object file
+
+<div class="smallexample">
+<pre class="smallexample">nlmconv [<samp>-I</samp> <var>bfdname</var>|<samp>--input-target=</samp><var>bfdname</var>]
+        [<samp>-O</samp> <var>bfdname</var>|<samp>--output-target=</samp><var>bfdname</var>]
+        [<samp>-T</samp> <var>headerfile</var>|<samp>--header-file=</samp><var>headerfile</var>]
+        [<samp>-d</samp>|<samp>--debug</samp>] [<samp>-l</samp> <var>linker</var>|<samp>--linker=</samp><var>linker</var>]
+        [<samp>-h</samp>|<samp>--help</samp>] [<samp>-V</samp>|<samp>--version</samp>]
+        <var>infile</var> <var>outfile</var>
+</pre></div>
+
+
+<p><code>nlmconv</code> converts the relocatable &lsquo;<samp>i386</samp>&rsquo; object file
 <var>infile</var> into the NetWare Loadable Module <var>outfile</var>, optionally
 reading <var>headerfile</var> for NLM header information.  For instructions
 on writing the NLM command file language used in header files, see the
-&lsquo;<samp><span class="samp">linkers</span></samp>&rsquo; section, &lsquo;<samp><span class="samp">NLMLINK</span></samp>&rsquo; in particular, of the <cite>NLM
+&lsquo;<samp>linkers</samp>&rsquo; section, &lsquo;<samp>NLMLINK</samp>&rsquo; in particular, of the <cite>NLM
 Development and Tools Overview</cite>, which is part of the NLM Software
-Developer's Kit (&ldquo;NLM SDK&rdquo;), available from Novell, Inc. 
-<samp><span class="command">nlmconv</span></samp> uses the <span class="sc">gnu</span> Binary File Descriptor library to read
+Developer&rsquo;s Kit (&ldquo;NLM SDK&rdquo;), available from Novell, Inc.
+<code>nlmconv</code> uses the <small>GNU</small> Binary File Descriptor library to read
 <var>infile</var>;
-see <a href="../ld/BFD.html#BFD">BFD</a>, for more information.
-
-   <p><samp><span class="command">nlmconv</span></samp> can perform a link step.  In other words, you can list
+see <a href="http://sourceware.org/binutils/docs/ld/BFD.html#BFD">BFD</a> in <cite>Using LD</cite>, for more information.
+</p>
+<p><code>nlmconv</code> can perform a link step.  In other words, you can list
 more than one object file for input if you list them in the definitions
-file (rather than simply specifying one input file on the command line). 
-In this case, <samp><span class="command">nlmconv</span></samp> calls the linker for you.
+file (rather than simply specifying one input file on the command line).
+In this case, <code>nlmconv</code> calls the linker for you.
+</p>
 
-<!-- man end -->
-<!-- man begin OPTIONS nlmconv -->
-     <dl>
-<dt><samp><span class="env">-I </span><var>bfdname</var></samp><dt><samp><span class="env">--input-target=</span><var>bfdname</var></samp><dd>Object format of the input file.  <samp><span class="command">nlmconv</span></samp> can usually determine
-the format of a given file (so no default is necessary). 
+
+<dl compact="compact">
+<dt><code>-I <var>bfdname</var></code></dt>
+<dt><code>--input-target=<var>bfdname</var></code></dt>
+<dd><p>Object format of the input file.  <code>nlmconv</code> can usually determine
+the format of a given file (so no default is necessary).
 See <a href="Target-Selection.html#Target-Selection">Target Selection</a>, for more information.
-
-     <br><dt><samp><span class="env">-O </span><var>bfdname</var></samp><dt><samp><span class="env">--output-target=</span><var>bfdname</var></samp><dd>Object format of the output file.  <samp><span class="command">nlmconv</span></samp> infers the output
-format based on the input format, e.g. for a &lsquo;<samp><span class="samp">i386</span></samp>&rsquo; input file the
-output format is &lsquo;<samp><span class="samp">nlm32-i386</span></samp>&rsquo;. 
+</p>
+</dd>
+<dt><code>-O <var>bfdname</var></code></dt>
+<dt><code>--output-target=<var>bfdname</var></code></dt>
+<dd><p>Object format of the output file.  <code>nlmconv</code> infers the output
+format based on the input format, e.g. for a &lsquo;<samp>i386</samp>&rsquo; input file the
+output format is &lsquo;<samp>nlm32-i386</samp>&rsquo;.
 See <a href="Target-Selection.html#Target-Selection">Target Selection</a>, for more information.
-
-     <br><dt><samp><span class="env">-T </span><var>headerfile</var></samp><dt><samp><span class="env">--header-file=</span><var>headerfile</var></samp><dd>Reads <var>headerfile</var> for NLM header information.  For instructions on
-writing the NLM command file language used in header files, see see the
-&lsquo;<samp><span class="samp">linkers</span></samp>&rsquo; section, of the <cite>NLM Development and Tools
-Overview</cite>, which is part of the NLM Software Developer's Kit, available
+</p>
+</dd>
+<dt><code>-T <var>headerfile</var></code></dt>
+<dt><code>--header-file=<var>headerfile</var></code></dt>
+<dd><p>Reads <var>headerfile</var> for NLM header information.  For instructions on
+writing the NLM command file language used in header files, see&nbsp;see the
+&lsquo;<samp>linkers</samp>&rsquo; section, of the <cite>NLM Development and Tools
+Overview</cite>, which is part of the NLM Software Developer&rsquo;s Kit, available
 from Novell, Inc.
-
-     <br><dt><samp><span class="env">-d</span></samp><dt><samp><span class="env">--debug</span></samp><dd>Displays (on standard error) the linker command line used by <samp><span class="command">nlmconv</span></samp>.
-
-     <br><dt><samp><span class="env">-l </span><var>linker</var></samp><dt><samp><span class="env">--linker=</span><var>linker</var></samp><dd>Use <var>linker</var> for any linking.  <var>linker</var> can be an absolute or a
+</p>
+</dd>
+<dt><code>-d</code></dt>
+<dt><code>--debug</code></dt>
+<dd><p>Displays (on standard error) the linker command line used by <code>nlmconv</code>.
+</p>
+</dd>
+<dt><code>-l <var>linker</var></code></dt>
+<dt><code>--linker=<var>linker</var></code></dt>
+<dd><p>Use <var>linker</var> for any linking.  <var>linker</var> can be an absolute or a
 relative pathname.
-
-     <br><dt><samp><span class="env">-h</span></samp><dt><samp><span class="env">--help</span></samp><dd>Prints a usage summary.
-
-     <br><dt><samp><span class="env">-V</span></samp><dt><samp><span class="env">--version</span></samp><dd>Prints the version number for <samp><span class="command">nlmconv</span></samp>. 
+</p>
+</dd>
+<dt><code>-h</code></dt>
+<dt><code>--help</code></dt>
+<dd><p>Prints a usage summary.
+</p>
+</dd>
+<dt><code>-V</code></dt>
+<dt><code>--version</code></dt>
+<dd><p>Prints the version number for <code>nlmconv</code>.
+</p></dd>
 </dl>
 
-<!-- man end -->
-   </body></html>
 
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="windmc.html#windmc" accesskey="n" rel="next">windmc</a>, Previous: <a href="addr2line.html#addr2line" accesskey="p" rel="prev">addr2line</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Binutils-Index.html#Binutils-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
